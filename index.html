@@ -338,6 +338,43 @@
 			}
 
 			/* ─── GYM PASS ─── */
+			.pass-toggle {
+				display: flex;
+				gap: 8px;
+				margin-bottom: 20px;
+			}
+
+			.pass-btn {
+				flex: 1;
+				padding: 10px 14px;
+				border-radius: 100px;
+				border: 1px solid var(--border2);
+				background: var(--bg2);
+				color: var(--text2);
+				font-family: 'DM Mono', monospace;
+				font-size: 12px;
+				cursor: pointer;
+				transition: all 0.2s;
+			}
+
+			.pass-btn:hover {
+				color: var(--text);
+			}
+
+			.pass-btn.active {
+				color: var(--accent);
+				background: rgba(232, 168, 78, 0.1);
+				border-color: rgba(232, 168, 78, 0.35);
+			}
+
+			.gym-pass {
+				display: none;
+				animation: fadeIn 0.3s ease;
+			}
+			.gym-pass.active {
+				display: block;
+			}
+
 			.phase-label {
 				font-family: 'DM Mono', monospace;
 				font-size: 10px;
@@ -948,315 +985,499 @@
 
 			<!-- ── PANEL: GYM ── -->
 			<div class="panel active" id="panel-gym">
-				<div class="alert">
-					<strong>40 min · 1–2 ggr/vecka</strong> — Kör mån + fre.
-					Terminal knee extension (övn. 3) kan du göra hemma varje dag
-					med gummiband — tar bara 3 min.
+				<div class="pass-toggle">
+					<button
+						class="pass-btn active"
+						onclick="switchPass('a', this)">
+						Pass A · Knärehab
+					</button>
+					<button class="pass-btn" onclick="switchPass('b', this)">
+						Pass B · Löpstyrka
+					</button>
 				</div>
 
-				<div class="phase-label">Uppvärmning — 5 min</div>
-
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div class="ex-num warm">U</div>
-						<div class="ex-info">
-							<div class="ex-name">Cykel / elliptical</div>
-							<div class="ex-meta">5 min · lätt tempo</div>
-						</div>
-						<div class="ex-chevron">▼</div>
+				<!-- ── PASS A: KNÄREHAB ── -->
+				<div class="gym-pass active" id="pass-a">
+					<div class="alert">
+						<strong>40 min · 1–2 ggr/vecka</strong> — Kör mån + fre.
+						Terminal knee extension (övn. 3) kan du göra hemma varje dag
+						med gummiband — tar bara 3 min.
 					</div>
-					<div class="exercise-body">
-						<div class="ex-section">Utrustning</div>
-						<div class="chips">
-							<span class="chip"
-								>Motionscykel eller elliptical</span
-							>
-						</div>
-						<div class="ex-section">Utförande</div>
-						<div class="ex-desc">
-							Trampa i lugnt tempo med lätt motstånd. Fokus är att
-							värma upp knäleden och få in synovialvätska
-							(ledsmörja) i knät. Håll ryggen rak om du cyklar.
-							Puls stiger lite men du ska kunna prata lätt.
-						</div>
-						<div class="ex-tip">
-							🌡️ Knäet ska kännas varmt och mjukt mot slutet — det
-							är tecknet på att ledsmörjan kommit igång.
-						</div>
-					</div>
-				</div>
-
-				<div class="phase-label">Huvudpass — 30 min</div>
-
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div class="ex-num main">1</div>
-						<div class="ex-info">
-							<div class="ex-name">
-								Benpress — låg fotplacering
+	
+					<div class="phase-label">Uppvärmning — 5 min</div>
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num warm">U</div>
+							<div class="ex-info">
+								<div class="ex-name">Cykel / elliptical</div>
+								<div class="ex-meta">5 min · lätt tempo</div>
 							</div>
-							<div class="ex-meta">4 × 12 reps · 60 sek vila</div>
+							<div class="ex-chevron">▼</div>
 						</div>
-						<div class="ex-chevron">▼</div>
-					</div>
-					<div class="exercise-body">
-						<div class="ex-section">Syfte</div>
-						<div class="ex-desc">
-							Stärker quadriceps (framsida lår) utan stor
-							belastning på patellofemorala leden. Primär övning
-							för dig — quadriceps är knäets "motor".
-						</div>
-						<div class="ex-section">Utrustning</div>
-						<div class="chips">
-							<span class="chip">Benpress-maskin</span>
-						</div>
-						<div class="ex-section">Utförande</div>
-						<div class="ex-desc">
-							Placera fötterna i nedre halvan av plattan,
-							höftbrett isär. Sänk plattan tills knäet är ca 90
-							grader (inget längre). Pressa tillbaka utan att låsa
-							knäet helt överst. Kontrollerat ner — ca 2 sekunder
-							ned, 1 sekund upp.
-						</div>
-						<div class="ex-weight">
-							<span>Startförslag:</span> 30–40 kg. Tungt vid rep
-							10–11 → öka 5 kg när du klarar 12 lätt.
-						</div>
-						<div class="ex-tip">
-							⚠️ Knät ska spåra i linje med stortån — aldrig falla
-							inåt. Håll hälen i plattan, inga tår.
-						</div>
-					</div>
-				</div>
-
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div class="ex-num main">2</div>
-						<div class="ex-info">
-							<div class="ex-name">Bulgariansk split squat</div>
-							<div class="ex-meta">
-								3 × 10 reps / ben · 90 sek vila
+						<div class="exercise-body">
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip"
+									>Motionscykel eller elliptical</span
+								>
+							</div>
+							<div class="ex-section">Utförande</div>
+							<div class="ex-desc">
+								Trampa i lugnt tempo med lätt motstånd. Fokus är att
+								värma upp knäleden och få in synovialvätska
+								(ledsmörja) i knät. Håll ryggen rak om du cyklar.
+								Puls stiger lite men du ska kunna prata lätt.
+							</div>
+							<div class="ex-tip">
+								🌡️ Knäet ska kännas varmt och mjukt mot slutet — det
+								är tecknet på att ledsmörjan kommit igång.
 							</div>
 						</div>
-						<div class="ex-chevron">▼</div>
 					</div>
-					<div class="exercise-body">
-						<div class="ex-section">Syfte</div>
-						<div class="ex-desc">
-							Tränar quadriceps och gluteus unilateralt (ett ben i
-							taget) — precis som löpning. Förbättrar
-							knästabilitet och avlastar kompression i knäleden.
-						</div>
-						<div class="ex-section">Utrustning</div>
-						<div class="chips">
-							<span class="chip">Bänk eller box</span
-							><span class="chip">Hantlar (valfritt)</span>
-						</div>
-						<div class="ex-section">Utförande</div>
-						<div class="ex-desc">
-							Bakre foten på bänken (fotrygg mot bänken, inte
-							tårna). Framfoten ca 60 cm från bänken. Sänk rakt
-							ner tills framknät är ca 90°. Bakknät pekar mot
-							golvet. Håll överkroppen upprätt. Pressa upp via
-							hälen på framfoten.
-						</div>
-						<div class="ex-weight">
-							<span>Startförslag:</span> Kroppsvikt → 8 kg/hand.
-							Fokus på teknik!
-						</div>
-						<div class="ex-tip">
-							✅ Framknät får gärna gå lite framför tån — det är
-							okej. Det viktiga är att det inte kollapsar inåt.
-						</div>
-					</div>
-				</div>
-
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div
-							class="ex-num main"
-							style="
-								background: rgba(232, 78, 78, 0.1);
-								color: #e87070;
-								border-color: rgba(232, 78, 78, 0.2);
-							">
-							3
-						</div>
-						<div class="ex-info">
-							<div class="ex-name">
-								Terminal knee extension — gummiband
+	
+					<div class="phase-label">Huvudpass — 30 min</div>
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">1</div>
+							<div class="ex-info">
+								<div class="ex-name">
+									Benpress — låg fotplacering
+								</div>
+								<div class="ex-meta">4 × 12 reps · 60 sek vila</div>
 							</div>
-							<div class="ex-meta">
-								3 × 15 reps / ben · 45 sek vila
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Stärker quadriceps (framsida lår) utan stor
+								belastning på patellofemorala leden. Primär övning
+								för dig — quadriceps är knäets "motor".
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Benpress-maskin</span>
+							</div>
+							<div class="ex-section">Utförande</div>
+							<div class="ex-desc">
+								Placera fötterna i nedre halvan av plattan,
+								höftbrett isär. Sänk plattan tills knäet är ca 90
+								grader (inget längre). Pressa tillbaka utan att låsa
+								knäet helt överst. Kontrollerat ner — ca 2 sekunder
+								ned, 1 sekund upp.
+							</div>
+							<div class="ex-weight">
+								<span>Startförslag:</span> 30–40 kg. Tungt vid rep
+								10–11 → öka 5 kg när du klarar 12 lätt.
+							</div>
+							<div class="ex-tip">
+								⚠️ Knät ska spåra i linje med stortån — aldrig falla
+								inåt. Håll hälen i plattan, inga tår.
 							</div>
 						</div>
-						<div class="ex-chevron">▼</div>
 					</div>
-					<div class="exercise-body">
-						<div class="ex-section">
-							⭐ Viktigaste övningen för dig
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">2</div>
+							<div class="ex-info">
+								<div class="ex-name">Bulgariansk split squat</div>
+								<div class="ex-meta">
+									3 × 10 reps / ben · 90 sek vila
+								</div>
+							</div>
+							<div class="ex-chevron">▼</div>
 						</div>
-						<div class="ex-desc">
-							Aktiverar VMO (vastus medialis oblique) — den lilla
-							muskeln på insidan av knäskålen som ofta är svag och
-							direkt kopplad till patellofemoralt syndrom. Gör
-							gärna varje dag hemma.
-						</div>
-						<div class="ex-section">Utrustning</div>
-						<div class="chips">
-							<span class="chip">Motståndsgummiband (medium)</span
-							><span class="chip"
-								>Stolpe eller maskin att fästa i</span
-							>
-						</div>
-						<div class="ex-section">Utförande</div>
-						<div class="ex-desc">
-							Fäst bandet i en stolpe i knähöjd. Stå med bandet
-							runt bakre knäet, ansiktet mot fästpunkten. Ta ett
-							steg bakåt för spänning. Stå på ett ben. Böj knäet
-							lätt (~20°) och räta ut det helt — fokus på sista
-							biten. Kontrollerat tillbaka.
-						</div>
-						<div class="ex-weight">
-							<span>Motstånd:</span> Medium gummiband. Bränning på
-							insidan av låret vid rep 12–15.
-						</div>
-						<div class="ex-tip">
-							🎯 Känn just här: insidan ovanför knäskålen ska
-							bränna. Om inte — ta ett steg bakåt (mer spänning).
-						</div>
-					</div>
-				</div>
-
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div class="ex-num main">4</div>
-						<div class="ex-info">
-							<div class="ex-name">Höftlyft / glute bridge</div>
-							<div class="ex-meta">3 × 15 reps · 60 sek vila</div>
-						</div>
-						<div class="ex-chevron">▼</div>
-					</div>
-					<div class="exercise-body">
-						<div class="ex-section">Syfte</div>
-						<div class="ex-desc">
-							Svaga gluteus-muskler är en vanlig orsak till
-							knäproblem hos löpare — höften tappar stabilitet och
-							knäet kompenserar. Glutes är knäets "stötdämpare"
-							bakifrån.
-						</div>
-						<div class="ex-section">Utrustning</div>
-						<div class="chips">
-							<span class="chip">Matta</span
-							><span class="chip">Viktplatta (valfritt)</span>
-						</div>
-						<div class="ex-section">Utförande</div>
-						<div class="ex-desc">
-							Ligg på rygg, fötterna i golvet, knäna ca 90°.
-							Pressa upp höften tills kroppen bildar rak linje
-							axel–höft–knä. Håll 1–2 sek uppe och kläm rumpan
-							maximalt. Sänk kontrollerat utan att röra golvet
-							mellan reps.
-						</div>
-						<div class="ex-weight">
-							<span>Progression:</span> Kroppsvikt → viktplatta →
-							single-leg. Börja single-leg om bilateral är för
-							lätt.
-						</div>
-						<div class="ex-tip">
-							💡 Känn det i rumpan — inte ryggen. Om ryggen tar —
-							sänk lite med höften.
-						</div>
-					</div>
-				</div>
-
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div class="ex-num main">5</div>
-						<div class="ex-info">
-							<div class="ex-name">Steg-upp på box (step-up)</div>
-							<div class="ex-meta">
-								3 × 10 reps / ben · 60 sek vila
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Tränar quadriceps och gluteus unilateralt (ett ben i
+								taget) — precis som löpning. Förbättrar
+								knästabilitet och avlastar kompression i knäleden.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Bänk eller box</span
+								><span class="chip">Hantlar (valfritt)</span>
+							</div>
+							<div class="ex-section">Utförande</div>
+							<div class="ex-desc">
+								Bakre foten på bänken (fotrygg mot bänken, inte
+								tårna). Framfoten ca 60 cm från bänken. Sänk rakt
+								ner tills framknät är ca 90°. Bakknät pekar mot
+								golvet. Håll överkroppen upprätt. Pressa upp via
+								hälen på framfoten.
+							</div>
+							<div class="ex-weight">
+								<span>Startförslag:</span> Kroppsvikt → 8 kg/hand.
+								Fokus på teknik!
+							</div>
+							<div class="ex-tip">
+								✅ Framknät får gärna gå lite framför tån — det är
+								okej. Det viktiga är att det inte kollapsar inåt.
 							</div>
 						</div>
-						<div class="ex-chevron">▼</div>
 					</div>
-					<div class="exercise-body">
-						<div class="ex-section">Syfte</div>
-						<div class="ex-desc">
-							Funktionell styrka i löprörelsen — stärker quad,
-							glutes och kalv koordinerat. Tränar den excentriska
-							fasen (nersteget) som är kritisk för knäkontroll vid
-							löpning.
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div
+								class="ex-num main"
+								style="
+									background: rgba(232, 78, 78, 0.1);
+									color: #e87070;
+									border-color: rgba(232, 78, 78, 0.2);
+								">
+								3
+							</div>
+							<div class="ex-info">
+								<div class="ex-name">
+									Terminal knee extension — gummiband
+								</div>
+								<div class="ex-meta">
+									3 × 15 reps / ben · 45 sek vila
+								</div>
+							</div>
+							<div class="ex-chevron">▼</div>
 						</div>
-						<div class="ex-section">Utrustning</div>
-						<div class="chips">
-							<span class="chip">Plyobox 40–50 cm</span
-							><span class="chip">Hantlar (valfritt)</span>
+						<div class="exercise-body">
+							<div class="ex-section">
+								⭐ Viktigaste övningen för dig
+							</div>
+							<div class="ex-desc">
+								Aktiverar VMO (vastus medialis oblique) — den lilla
+								muskeln på insidan av knäskålen som ofta är svag och
+								direkt kopplad till patellofemoralt syndrom. Gör
+								gärna varje dag hemma.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Motståndsgummiband (medium)</span
+								><span class="chip"
+									>Stolpe eller maskin att fästa i</span
+								>
+							</div>
+							<div class="ex-section">Utförande</div>
+							<div class="ex-desc">
+								Fäst bandet i en stolpe i knähöjd. Stå med bandet
+								runt bakre knäet, ansiktet mot fästpunkten. Ta ett
+								steg bakåt för spänning. Stå på ett ben. Böj knäet
+								lätt (~20°) och räta ut det helt — fokus på sista
+								biten. Kontrollerat tillbaka.
+							</div>
+							<div class="ex-weight">
+								<span>Motstånd:</span> Medium gummiband. Bränning på
+								insidan av låret vid rep 12–15.
+							</div>
+							<div class="ex-tip">
+								🎯 Känn just här: insidan ovanför knäskålen ska
+								bränna. Om inte — ta ett steg bakåt (mer spänning).
+							</div>
 						</div>
-						<div class="ex-section">Utförande</div>
-						<div class="ex-desc">
-							Kliv upp med ett ben, hela foten på boxen. Pressa
-							upp via hälens sida (inte tårna!). Andra benet
-							svänger upp men tar inte stöd. Kliv ner kontrollerat
-							— 3 sekunder ner. Gör alla reps på ett ben, byt
-							sedan.
+					</div>
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">4</div>
+							<div class="ex-info">
+								<div class="ex-name">Höftlyft / glute bridge</div>
+								<div class="ex-meta">3 × 15 reps · 60 sek vila</div>
+							</div>
+							<div class="ex-chevron">▼</div>
 						</div>
-						<div class="ex-weight">
-							<span>Startförslag:</span> Kroppsvikt → 2×8 kg
-							hantlar.
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Svaga gluteus-muskler är en vanlig orsak till
+								knäproblem hos löpare — höften tappar stabilitet och
+								knäet kompenserar. Glutes är knäets "stötdämpare"
+								bakifrån.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Matta</span
+								><span class="chip">Viktplatta (valfritt)</span>
+							</div>
+							<div class="ex-section">Utförande</div>
+							<div class="ex-desc">
+								Ligg på rygg, fötterna i golvet, knäna ca 90°.
+								Pressa upp höften tills kroppen bildar rak linje
+								axel–höft–knä. Håll 1–2 sek uppe och kläm rumpan
+								maximalt. Sänk kontrollerat utan att röra golvet
+								mellan reps.
+							</div>
+							<div class="ex-weight">
+								<span>Progression:</span> Kroppsvikt → viktplatta →
+								single-leg. Börja single-leg om bilateral är för
+								lätt.
+							</div>
+							<div class="ex-tip">
+								💡 Känn det i rumpan — inte ryggen. Om ryggen tar —
+								sänk lite med höften.
+							</div>
 						</div>
-						<div class="ex-tip">
-							🔑 Ner-fasen (excentrisk) är viktigast — ta tid. Det
-							är just den kontrollen som saknas när knäet gör ont
-							i utförsbackar.
+					</div>
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">5</div>
+							<div class="ex-info">
+								<div class="ex-name">Steg-upp på box (step-up)</div>
+								<div class="ex-meta">
+									3 × 10 reps / ben · 60 sek vila
+								</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Funktionell styrka i löprörelsen — stärker quad,
+								glutes och kalv koordinerat. Tränar den excentriska
+								fasen (nersteget) som är kritisk för knäkontroll vid
+								löpning.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Plyobox 40–50 cm</span
+								><span class="chip">Hantlar (valfritt)</span>
+							</div>
+							<div class="ex-section">Utförande</div>
+							<div class="ex-desc">
+								Kliv upp med ett ben, hela foten på boxen. Pressa
+								upp via hälens sida (inte tårna!). Andra benet
+								svänger upp men tar inte stöd. Kliv ner kontrollerat
+								— 3 sekunder ner. Gör alla reps på ett ben, byt
+								sedan.
+							</div>
+							<div class="ex-weight">
+								<span>Startförslag:</span> Kroppsvikt → 2×8 kg
+								hantlar.
+							</div>
+							<div class="ex-tip">
+								🔑 Ner-fasen (excentrisk) är viktigast — ta tid. Det
+								är just den kontrollen som saknas när knäet gör ont
+								i utförsbackar.
+							</div>
+						</div>
+					</div>
+	
+					<div class="phase-label">Nedvarvning — 5 min</div>
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num cool">A</div>
+							<div class="ex-info">
+								<div class="ex-name">Höftflexors-stretch</div>
+								<div class="ex-meta">2 × 45 sek / sida</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-desc">
+								Halvknästående, skjut fram höften tills du känner
+								sträckning fram i låret/ljumsken. Håll ryggen rak,
+								inget svank. Strama lätt med rumpan. Täta
+								höftflexors är vanlig bidragande faktor till
+								knäsmärta hos löpare.
+							</div>
+						</div>
+					</div>
+	
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num cool">B</div>
+							<div class="ex-info">
+								<div class="ex-name">Quad + vadstretch</div>
+								<div class="ex-meta">2 × 45 sek / sida vardera</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-desc">
+								<strong style="color: var(--text)">Quad:</strong>
+								Stå på ett ben, dra foten bakom dig mot rumpan. Håll
+								knäna ihop — inte ut till sidan.<br /><br /><strong
+									style="color: var(--text)"
+									>Vad:</strong
+								>
+								Fot mot väggen, häl i golvet. Rakt knä
+								(gastrocnemius), sedan böjt knä (soleus).
+								Vadmusklerna fäster kring knäleden och påverkar din
+								löpmekanism.
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="phase-label">Nedvarvning — 5 min</div>
+				<!-- ── PASS B: LÖPSTYRKA ── -->
+				<div class="gym-pass" id="pass-b">
+					<div class="alert">
+						<strong>Löpstyrka</strong> — Tyngre pass med fokus på
+						ren styrka, enbensstyrka och stabilitet i höft och bål.
+					</div>
 
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div class="ex-num cool">A</div>
-						<div class="ex-info">
-							<div class="ex-name">Höftflexors-stretch</div>
-							<div class="ex-meta">2 × 45 sek / sida</div>
-						</div>
-						<div class="ex-chevron">▼</div>
-					</div>
-					<div class="exercise-body">
-						<div class="ex-desc">
-							Halvknästående, skjut fram höften tills du känner
-							sträckning fram i låret/ljumsken. Håll ryggen rak,
-							inget svank. Strama lätt med rumpan. Täta
-							höftflexors är vanlig bidragande faktor till
-							knäsmärta hos löpare.
-						</div>
-					</div>
-				</div>
+					<div class="phase-label">Huvudpass — 6 övningar</div>
 
-				<div class="exercise-card" onclick="toggleEx(this)">
-					<div class="exercise-header">
-						<div class="ex-num cool">B</div>
-						<div class="ex-info">
-							<div class="ex-name">Quad + vadstretch</div>
-							<div class="ex-meta">2 × 45 sek / sida vardera</div>
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">1</div>
+							<div class="ex-info">
+								<div class="ex-name">Benpress — tung</div>
+								<div class="ex-meta">3–4 × 5–8 reps</div>
+							</div>
+							<div class="ex-chevron">▼</div>
 						</div>
-						<div class="ex-chevron">▼</div>
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Målet är enkelt: bygg mer styrka i underkroppen så
+								att varje löpsteg blir en mindre andel av vad dina
+								ben klarar av att producera.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Benpress-maskin</span>
+							</div>
+							<div class="ex-tip">
+								🏋️ Tunga, kontrollerade reps.
+							</div>
+						</div>
 					</div>
-					<div class="exercise-body">
-						<div class="ex-desc">
-							<strong style="color: var(--text)">Quad:</strong>
-							Stå på ett ben, dra foten bakom dig mot rumpan. Håll
-							knäna ihop — inte ut till sidan.<br /><br /><strong
-								style="color: var(--text)"
-								>Vad:</strong
-							>
-							Fot mot väggen, häl i golvet. Rakt knä
-							(gastrocnemius), sedan böjt knä (soleus).
-							Vadmusklerna fäster kring knäleden och påverkar din
-							löpmekanism.
+
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">2</div>
+							<div class="ex-info">
+								<div class="ex-name">Bulgariansk split squat</div>
+								<div class="ex-meta">3 × 8 reps / ben</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Löpning är i grunden tusentals enbenskontakter.
+								Därför spelar unilateral styrka (ett ben i taget)
+								roll. Split squats tränar quads, glutes och
+								stabilitet — och hjälper till att avslöja skillnader
+								mellan sidorna.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Bänk eller box</span
+								><span class="chip">Hantlar (valfritt)</span>
+							</div>
+							<div class="ex-tip">
+								👀 Jämför sidorna — känns ena benet svagare eller
+								ostadigare?
+							</div>
+						</div>
+					</div>
+
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">3</div>
+							<div class="ex-info">
+								<div class="ex-name">Lårcurl (hamstring curl)</div>
+								<div class="ex-meta">3 × 8–12 reps</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Baksida lår (hamstrings) hjälper till att kontrollera
+								benet genom löpsteget och bidrar till
+								kraftutvecklingen. Starka hamstrings är något du inte
+								ska försumma.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Lårcurl-maskin</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">4</div>
+							<div class="ex-info">
+								<div class="ex-name">Höftabduktion</div>
+								<div class="ex-meta">3 × 12–15 reps</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Tränar gluteus medius och andra höftstabilisatorer.
+								De musklerna hjälper dig kontrollera bäckenet och
+								håller benet stabilt varje gång du landar på en fot.
+							</div>
+							<div class="ex-section">Utrustning</div>
+							<div class="chips">
+								<span class="chip">Abduktionsmaskin</span>
+							</div>
+							<div class="ex-tip">
+								🏃 Extra nyttigt för löpare — du upprepar just den
+								enbensställningen tusentals gånger.
+							</div>
+						</div>
+					</div>
+
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">5</div>
+							<div class="ex-info">
+								<div class="ex-name">Vadträning</div>
+								<div class="ex-meta">3 set · rakt + böjt knä</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-section">Syfte</div>
+							<div class="ex-desc">
+								Vaderna tar en enorm mängd upprepad belastning när du
+								springer, så de behöver riktig styrketräning också.
+							</div>
+							<div class="ex-section">Kör båda</div>
+							<div class="ex-desc">
+								<strong style="color: var(--text)">Rakt ben</strong>
+								(t.ex. stående vadpress) → mer
+								gastrocnemius.<br /><strong
+									style="color: var(--text)"
+									>Böjt knä</strong
+								>
+								(t.ex. sittande vadpress) → mer soleus.
+							</div>
+						</div>
+					</div>
+
+					<div class="exercise-card" onclick="toggleEx(this)">
+						<div class="exercise-header">
+							<div class="ex-num main">6</div>
+							<div class="ex-info">
+								<div class="ex-name">Core / höftstabilitet</div>
+								<div class="ex-meta">2–3 set</div>
+							</div>
+							<div class="ex-chevron">▼</div>
+						</div>
+						<div class="exercise-body">
+							<div class="ex-section">Välj bland</div>
+							<div class="ex-desc">
+								• Pallof press<br />
+								• Sidoplanka<br />
+								• Copenhagen plank<br />
+								• Balansövningar på ett ben
+							</div>
+							<div class="ex-tip">
+								🧘 Inget avancerat. Bara tillräckligt för att bygga
+								kontroll i höfter och bål när tröttheten börjar
+								komma.
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1611,6 +1832,17 @@
 				document.getElementById('panel-' + id).classList.add('active');
 				event.target.classList.add('active');
 				if (id === 'progress') renderLogs();
+			}
+
+			function switchPass(id, btn) {
+				document
+					.querySelectorAll('.pass-btn')
+					.forEach((b) => b.classList.remove('active'));
+				document
+					.querySelectorAll('.gym-pass')
+					.forEach((p) => p.classList.remove('active'));
+				document.getElementById('pass-' + id).classList.add('active');
+				btn.classList.add('active');
 			}
 
 			function toggleEx(card) {
